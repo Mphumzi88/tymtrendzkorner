@@ -1,1 +1,2 @@
 # tymtrendzkorner
+Initial website upload
