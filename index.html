@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TymtrendzKorner | Talk Your Mind – Youth Empowerment Platform</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0a2540;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      gap: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e4a6e, #2c7da0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: pointer;
+    }
+
+    .logo p {
+      font-size: 0.85rem;
+      color: #4a627a;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links button {
+      background: none;
+      border: none;
+      font-weight: 600;
+      color: #2c5282;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.2s;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links button:hover, .nav-links button.active-page {
+      color: #2c7da0;
+      border-bottom: 2px solid #2c7da0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2c7da0;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #2c7da0;
+      color: #2c7da0;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #2c7da0;
+      color: white;
+    }
+
+    .btn:hover {
+      background: #1e5a73;
+      transform: translateY(-2px);
+    }
+
+    /* page transitions */
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* hero section */
+    .hero {
+      padding: 3rem 0 4rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+    .hero-content { flex: 1.2; }
+    .hero-badge {
+      background: #e2f0f7;
+      color: #1e5a73;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .hero-content h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #0a2f44;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+    .hero-image {
+      flex: 0.9;
+      background: #d9e9f0;
+      border-radius: 48px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+    }
+    .hero-image i { font-size: 7rem; color: #2c7da0; opacity: 0.85; }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      color: #0a2f44;
+    }
+    .section-sub {
+      text-align: center;
+      color: #4a627a;
+      max-width: 720px;
+      margin: 0 auto 2.5rem auto;
+      font-size: 1.05rem;
+    }
+    .grid-3, .services-grid, .talents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+      transition: all 0.25s ease;
+      text-align: center;
+      border: 1px solid #e2ebf0;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card-icon { font-size: 2.5rem; color: #2c7da0; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; font-weight: 700; color: #1e4a6e; }
+    .card p { color: #4a627a; font-size: 0.95rem; }
+
+    /* Talent card specific styling */
+    .talent-card {
+      background: linear-gradient(145deg, #ffffff, #f5f9fc);
+      border-radius: 32px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #d4e2ec;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    .talent-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+      border-color: #2c7da0;
+    }
+    .talent-icon {
+      font-size: 3rem;
+      color: #2c7da0;
+      margin-bottom: 1.2rem;
+      background: #e2f0f7;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: 0.2s;
+    }
+    .talent-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0a2f44;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+    .talent-role {
+      font-size: 0.9rem;
+      color: #2c7da0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* services specific */
+    .services-grid .card {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .services-grid .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* about section */
+    .about-block {
+      background: #eef4f8;
+      border-radius: 40px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* advice form */
+    .advice-form {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -12px rgba(0,0,0,0.05);
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid #d9e2e8;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 28px;
+      border: 1px solid #cbdbe0;
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #2c7da0;
+      box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+    }
+    .submit-feedback { margin-top: 0.8rem; font-size: 0.9rem; color: #1e7e34; font-weight: 500; text-align: center; }
+
+    /* episodes grid - with custom thumbnails */
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .episode-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s;
+      border: 1px solid #e2ebf0;
+    }
+    .episode-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 32px -12px rgba(0,0,0,0.15);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #0a2f44;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 2;
+    }
+    /* Custom thumbnail styling */
+    .custom-thumbnail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      transition: opacity 0.3s ease;
+      background: #0a2f44;
+    }
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 50px;
+      background: rgba(0,0,0,0.75);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transition: 0.2s;
+      z-index: 3;
+      pointer-events: none;
+      backdrop-filter: blur(2px);
+    }
+    .video-wrapper:hover .play-overlay {
+      background: #2c7da0;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .episode-info {
+      padding: 1.5rem;
+    }
+    .episode-number {
+      background: #e2f0f7;
+      color: #1e5a73;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .episode-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0a2f44;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .episode-desc {
+      color: #4a627a;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .watch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #2c7da0;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .watch-link:hover {
+      background: #1e5a73;
+    }
+
+    footer {
+      background: #0a2f44;
+      color: #e2f0f7;
+      padding: 3rem 0 2rem;
+      margin-top: 3rem;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 { color: #8fcbdf; margin-bottom: 1rem; }
+    .footer-col a, .footer-col button.footer-link {
+      color: #cbdde6;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      text-align: left;
+      padding: 0;
+    }
+    .footer-col a:hover, .footer-col button.footer-link:hover { color: white; }
+    .social-icons { display: flex; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap; }
+    .social-icons a { font-size: 1.5rem; display: inline-block; }
+    .copyright { text-align: center; border-top: 1px solid #2c5a72; padding-top: 2rem; font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+      .hero-content h2 { font-size: 2.2rem; }
+      .navbar { flex-direction: column; text-align: center; }
+      .section-title { font-size: 1.8rem; }
+      .play-overlay { width: 55px; height: 40px; font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo" data-nav="home">
+        <h1>TymtrendzKorner</h1>
+        <p>by Talk Your Mind · Est. 2020</p>
+      </div>
+      <ul class="nav-links">
+        <li><button class="nav-btn" data-page="home">Home</button></li>
+        <li><button class="nav-btn" data-page="about">About Us</button></li>
+        <li><button class="nav-btn" data-page="services">Services</button></li>
+        <li><button class="nav-btn" data-page="talents">Local Talents</button></li>
+        <li><button class="nav-btn" data-page="advice">Get Advice</button></li>
+        <li><button class="nav-btn" data-page="episodes">Episodes</button></li>
+      </ul>
+      <button class="btn" id="globalCtaBtn">Collaborate →</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active-page">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <span class="hero-badge"><i class="fas fa-microphone-alt"></i> TYMTRENDZKORNER · Flagship Podcast</span>
+            <h2>Bringing your imaginations to life.</h2>
+            <p>Talk Your Mind is a youth empowerment platform in Ngqeleni, Eastern Cape. We celebrate black creatives, amplify voices, and create a supportive ecosystem for the next generation of artists, entrepreneurs, and change-makers.</p>
+            <div class="hero-buttons">
+              <button class="btn" id="homeServicesBtn">Our Services</button>
+              <button class="btn btn-outline" id="homeEpisodesBtn">Watch Episodes</button>
+            </div>
+          </div>
+          <div class="hero-image">
+            <i class="fas fa-head-side-vr"></i>
+            <i class="fas fa-chalkboard-user" style="margin-left: 1rem;"></i>
+            <p style="margin-top: 1rem; font-weight: 500;">#TymtrendzKorner | #TalkYourMind</p>
+          </div>
+        </div>
+
+        <div style="margin: 2rem 0 1rem;">
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-icon"><i class="fas fa-hands-helping"></i></div>
+              <h3>Youth Empowerment</h3>
+              <p>Founded in 2020 in Ngqeleni, we provide a supportive environment for young creatives to express themselves and thrive.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i class="fas fa-podcast"></i></div>
+              <h3>TYMTRENDZKORNER Podcast</h3>
+              <p>Stories of black creatives, entrepreneurs, and leaders. Covering trending news, culture shifts, and fresh voices.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+              <h3>Amplifying Voices</h3>
+              <p>We celebrate black female leaders in male-dominated fields and create opportunities for innovation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page">
+      <div class="container">
+        <div class="section-title">About Talk Your Mind</div>
+        <div class="section-sub">Empowering young creatives since 2020 in Ngqeleni, Eastern Cape, South Africa.</div>
+        <div class="about-block">
+          <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Talk Your Mind</strong> is a youth empowerment platform established in 2020 in Ngqeleni, Eastern Cape, South Africa. Our mission is to create a supportive environment for young creatives to express themselves, showcase their talents, and thrive. We emphasize creativity as a means of self-expression and personal development, focusing on uplifting the next generation of artists, entrepreneurs, and innovators.</p>
+          <p style="margin-bottom: 1rem;"><strong>TYMTRENDZKORNER</strong>, our flagship podcast, highlights the stories and achievements of young black creatives, entrepreneurs, and change-makers. We celebrate black culture and amplify the voices of black female leaders in male-dominated fields. The podcast covers trending news, fresh voices, and cultural shifts while fostering a supportive community that inspires and creates opportunities.</p>
+          <p>We are more than just a platform; we're a movement dedicated to empowering young creatives in Ngqeleni and beyond. Our community-driven initiative provides a supportive ecosystem that fosters growth, creativity, and innovation through tailored promotions, marketing, event hosting, and entertainment services. By partnering with us, you join a community that amplifies your voice, celebrates your achievements, and elevates your brand.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services-page" class="page">
+      <div class="container">
+        <div class="section-title">Our Services</div>
+        <div class="section-sub">We help you reach new heights — from podcast features to full event hosting.</div>
+        <div class="services-grid">
+          <div class="card"><i class="fas fa-microphone-alt card-icon"></i><h3>Podcast Hosting</h3><p>We host you on TYMTRENDZKORNER, giving you a platform to share your story and connect with your audience.</p></div>
+          <div class="card"><i class="fas fa-handshake card-icon"></i><h3>Collaborations</h3><p>Partner with us to create unique content, events, and projects that drive real results.</p></div>
+          <div class="card"><i class="fas fa-calendar-alt card-icon"></i><h3>Event Hosting & Entertainment</h3><p>Professional MCs, DJs, and entertainment services for your events and functions.</p></div>
+          <div class="card"><i class="fas fa-chart-line card-icon"></i><h3>Social Media Promotions</h3><p>Targeted campaigns across all our platforms to widen your reach and engagement.</p></div>
+          <div class="card"><i class="fas fa-video card-icon"></i><h3>Interview Promotions</h3><p>Showcase your expertise through exclusive interviews featured on our channels.</p></div>
+          <div class="card"><i class="fas fa-podcast card-icon"></i><h3>Podcast Promotions</h3><p>Get featured on TYMTRENDZKORNER to tap into our growing listener base.</p></div>
+          <div class="card"><i class="fas fa-chalkboard-user card-icon"></i><h3>Social Media Management</h3><p>We manage your presence, creating and curating content that resonates with your audience.</p></div>
+        </div>
+        <div style="text-align: center; margin: 2rem 0;">
+          <a href="tel:+27720691047" class="btn" style="display: inline-block; background:#1e5a73;"><i class="fas fa-phone-alt"></i> +27-72-069-1047</a>
+          <a href="mailto:talkyourmind906@gmail.com" class="btn btn-outline" style="display: inline-block; margin-left: 1rem;"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCAL TALENTS PAGE -->
+    <div id="talents-page" class="page">
+      <div class="container">
+        <div class="section-title">✨ Local Talents Spotlight ✨</div>
+        <div class="section-sub">Celebrating exceptional creatives, entrepreneurs, and change-makers from our community.</div>
+        
+        <div class="talents-grid">
+          <div class="talent-card">
+            <div class="talent-icon"><i class="fas fa-headphones-alt"></i></div>
+            <div class="talent-name">DJ Mavovo</div>
+            <div class="talent-role">Disc Jockey · Producer</div>
+          </div>
+          <div class="talent-card">
+            <div class="talent-icon"><i class="fas fa-cut"></i></div>
+            <div class="talent-name">The Iconic Barber</div>
+            <div class="talent-role">Master Barber · Style Architect</div>
+          </div>
+          <div class="talent-card">
+            <div class="talent-icon"><i class="fas fa-music"></i></div>
+            <div class="talent-name">Laphakade Myathaza</div>
+            <div class="talent-role">African Contemporary Musician</div>
+          </div>
+          <div class="talent-card">
+            <div class="talent-icon"><i class="fas fa-dj"></i></div>
+            <div class="talent-name">DJ Zakes</div>
+            <div class="talent-role">DJ · Music Curator</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2.5rem; text-align: center;">
+          <h3 style="color:#0a2f44;">Want to be featured?</h3>
+          <p>If you're a local creative, entrepreneur, or change-maker, let us know — we'd love to spotlight you!</p>
+          <button class="btn" id="nominateTalentBtn" style="background:#1e5a73; margin-top: 0.5rem;">Nominate yourself or someone →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADVICE PAGE -->
+    <div id="advice-page" class="page">
+      <div class="container">
+        <div class="section-title">🧭 Share your story | Seek advice</div>
+        <div class="section-sub">A safe space to talk about struggles, get guidance, and uplift one another.</div>
+        <div class="advice-form">
+          <form id="adviceForm">
+            <div class="form-group"><input type="text" id="nameInput" placeholder="Your name (or 'Anonymous')" value="Anonymous"></div>
+            <div class="form-group"><select id="topicSelect"><option>Mental health & anxiety</option><option>Relationships & family</option><option>Career & purpose</option><option>Showcasing my talent</option><option>Other struggle / story</option></select></div>
+            <div class="form-group"><textarea id="messageInput" placeholder="What's on your mind? We're here to uplift you. Share your struggle, ask for advice, or nominate a local hero..."></textarea></div>
+            <button type="submit" class="btn" style="width:100%;">Send to TymtrendzKorner 💙</button>
+            <div id="formFeedback" class="submit-feedback"></div>
+          </form>
+        </div>
+        <div style="margin: 2rem 0; background:#eef4f8; border-radius: 32px; padding: 1.5rem;">
+          <h3><i class="fas fa-quote-left" style="color:#2c7da0;"></i> Community Voices</h3>
+          <p><strong>⭐ Aaliyah:</strong> "The podcast helped me overcome burnout. Real conversations matter."</p>
+          <p><strong>⭐ Marcus (painter):</strong> "Being featured brought me new commissions. Thank you for uplifting creators!"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EPISODES PAGE - Using custom thumbnails from your files -->
+    <div id="episodes-page" class="page">
+      <div class="container">
+        <div class="section-title">🎙️ TYMTRENDZKORNER Episodes</div>
+        <div class="section-sub">Real conversations, local voices, and stories that uplift. Watch or listen to our latest episodes.</div>
+        
+        <div class="episodes-grid">
+          <!-- Episode 1 - Custom Thumbnail: ep1.jpg -->
+          <div class="episode-card">
+            <div class="video-wrapper" data-video-id="z5Hx2HfnF_Q">
+              <img class="custom-thumbnail" src="ep1.jpg" alt="Episode 1 Thumbnail">
+              <div class="play-overlay"><i class="fas fa-play"></i></div>
+              <iframe class="youtube-iframe" src="about:blank" title="Episode 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="episode-info">
+              <span class="episode-number">Episode 01</span>
+              <h3 class="episode-title">First ever episode | Miss NLM 2025 | Pageantry misconceptions</h3>
+              <p class="episode-desc">In celebration of Youth Month, we spotlight pageantry with Yolanda Silinga, Miss Nyandeni Local Municipality Queen. She shares her story, dispels myths, and gives a glimpse beyond the crown.</p>
+              <a href="https://youtu.be/z5Hx2HfnF_Q" class="watch-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+          
+          <!-- Episode 2 - Custom Thumbnail: ep2.jpg -->
+          <div class="episode-card">
+            <div class="video-wrapper" data-video-id="OPaDjMa2hHs">
+              <img class="custom-thumbnail" src="ep2.jpg" alt="Episode 2 Thumbnail">
+              <div class="play-overlay"><i class="fas fa-play"></i></div>
+              <iframe class="youtube-iframe" src="about:blank" title="Episode 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="episode-info">
+              <span class="episode-number">Episode 02</span>
+              <h3 class="episode-title">Ngqeleni Imbizo | Laphakade on new music | Winter Fest | Miss NLM 2025</h3>
+              <p class="episode-desc">Community engagement, fresh music from Laphakade, exclusive management insights, Winter Fest highlights, and more from the Miss NLM 2025 journey.</p>
+              <a href="https://youtu.be/OPaDjMa2hHs" class="watch-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+          
+          <!-- Episode 3 - Custom Thumbnail: ep3.jpg -->
+          <div class="episode-card">
+            <div class="video-wrapper" data-video-id="olmg2piyBpE">
+              <img class="custom-thumbnail" src="ep3.jpg" alt="Episode 3 Thumbnail">
+              <div class="play-overlay"><i class="fas fa-play"></i></div>
+              <iframe class="youtube-iframe" src="about:blank" title="Episode 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="episode-info">
+              <span class="episode-number">Episode 03</span>
+              <h3 class="episode-title">BTS of trusting God during a storm | Okuhle Nxiwa on pageantry</h3>
+              <p class="episode-desc">Behind the scenes of faith during difficult times, Okuhle Nxiwa opens up about pageantry, resilience, and the possible return of Miss UpYourLife.</p>
+              <a href="https://youtu.be/olmg2piyBpE" class="watch-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+          
+          <!-- Episode 4 - Custom Thumbnail: ep4.jpg -->
+          <div class="episode-card">
+            <div class="video-wrapper" data-video-id="u8WZcUGXk9I">
+              <img class="custom-thumbnail" src="ep4.jpg" alt="Episode 4 Thumbnail">
+              <div class="play-overlay"><i class="fas fa-play"></i></div>
+              <iframe class="youtube-iframe" src="about:blank" title="Episode 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="episode-info">
+              <span class="episode-number">Episode 04</span>
+              <h3 class="episode-title">Happy 2026, vibes unlocked 🎬✨ — Kasi vibes</h3>
+              <p class="episode-desc">Celebrating 2026 with authentic local energy. Drop your fave old-school text shortcode and vibe with us as we explore township culture and new beginnings.</p>
+              <a href="https://youtu.be/u8WZcUGXk9I" class="watch-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align:center; margin: 2rem 0;">
+          <a href="https://www.youtube.com/@tymtrendzkorner-101" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Subscribe on YouTube</a>
+        </div>
+        <div style="margin-top: 1rem; background:#e2f0f7; border-radius: 32px; padding: 1.5rem; text-align:center;">
+          <i class="fas fa-headphones" style="font-size: 2rem; color:#2c7da0;"></i>
+          <p style="margin-top: 0.5rem;">New episodes every week — real stories, real voices, real upliftment.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h4>TymtrendzKorner</h4>
+          <p>Talk Your Mind · Est. 2020<br>Ngqeleni, Eastern Cape, SA</p>
+          <p><i class="fas fa-phone-alt"></i> <a href="tel:+27720691047" style="color:#cbdde6; display:inline;">+27-72-069-1047</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:talkyourmind906@gmail.com" style="color:#cbdde6; display:inline;">talkyourmind906@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/talkyourmind.tym" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/talkyourmind_/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@tymtrendzkorner" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@tymtrendzkorner-101" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Get involved</h4>
+          <button class="footer-link" data-nav="advice">Share your story</button>
+          <button class="footer-link" data-nav="talents">Nominate talent</button>
+          <button class="footer-link" data-nav="services">Our services</button>
+          <a href="https://www.facebook.com/talkyourmind.tym" target="_blank" class="footer-link">Facebook Page</a>
+          <a href="https://www.instagram.com/talkyourmind_/" target="_blank" class="footer-link">Instagram</a>
+          <a href="https://www.tiktok.com/@tymtrendzkorner" target="_blank" class="footer-link">TikTok</a>
+          <a href="https://www.youtube.com/@tymtrendzkorner-101" target="_blank" class="footer-link">YouTube Channel</a>
+          <a href="mailto:talkyourmind906@gmail.com" class="footer-link">Email Us</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Talk Your Mind — TymtrendzKorner. Empowering young creatives, celebrating black culture, and shaping the future.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const pages = {
+      home: document.getElementById('home-page'),
+      about: document.getElementById('about-page'),
+      services: document.getElementById('services-page'),
+      talents: document.getElementById('talents-page'),
+      advice: document.getElementById('advice-page'),
+      episodes: document.getElementById('episodes-page')
+    };
+    function activatePage(pageId) {
+      Object.values(pages).forEach(p => p?.classList.remove('active-page'));
+      if(pages[pageId]) pages[pageId].classList.add('active-page');
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if(btn.getAttribute('data-page') === pageId) btn.classList.add('active-page');
+        else btn.classList.remove('active-page');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => { const pg = btn.getAttribute('data-page'); if(pages[pg]) activatePage(pg); }));
+    document.querySelector('.logo')?.addEventListener('click', () => activatePage('home'));
+    document.getElementById('globalCtaBtn')?.addEventListener('click', () => activatePage('services'));
+    document.getElementById('homeServicesBtn')?.addEventListener('click', () => activatePage('services'));
+    document.getElementById('homeEpisodesBtn')?.addEventListener('click', () => activatePage('episodes'));
+    document.getElementById('nominateTalentBtn')?.addEventListener('click', () => { activatePage('advice'); const msg = document.getElementById('messageInput'); if(msg && !msg.value.trim()) msg.value = "I'd like to nominate a local talent: [name & talent description]"; });
+    
+    document.querySelectorAll('.footer-link[data-nav]').forEach(ln => ln.addEventListener('click', (e) => { const target = ln.getAttribute('data-nav'); if(pages[target]) activatePage(target); }));
+
+    const adviceForm = document.getElementById('adviceForm'), fbDiv = document.getElementById('formFeedback');
+    if(adviceForm) adviceForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nameInput').value.trim() || "Anonymous", topic = document.getElementById('topicSelect').value, msg = document.getElementById('messageInput').value.trim();
+      if(!msg) { fbDiv.innerHTML = "💙 Please share your thoughts — we're here to listen."; fbDiv.style.color = "#1e5a73"; return; }
+      fbDiv.innerHTML = `✨ Thanks ${name}, your message about "${topic}" has been received. Our team will support you. You are not alone. ✨`;
+      fbDiv.style.color = "#1e7e34";
+      document.getElementById('messageInput').value = '';
+      setTimeout(() => { if(fbDiv.innerHTML.includes("received")) fbDiv.innerHTML = ""; }, 5000);
+    });
+    document.querySelector('.nav-btn[data-page="home"]')?.classList.add('active-page');
+
+    // Custom thumbnail click-to-play functionality
+    document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+      const thumbnail = wrapper.querySelector('.custom-thumbnail');
+      const playBtn = wrapper.querySelector('.play-overlay');
+      const iframe = wrapper.querySelector('.youtube-iframe');
+      const videoId = wrapper.getAttribute('data-video-id');
+      
+      const loadVideo = () => {
+        if (iframe && videoId && iframe.src === 'about:blank') {
+          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+          if (thumbnail) thumbnail.style.opacity = '0';
+          if (playBtn) playBtn.style.opacity = '0';
+        }
+      };
+      
+      if (wrapper && videoId) {
+        wrapper.addEventListener('click', loadVideo);
+      }
+    });
+  </script>
+</body>
+</html>
